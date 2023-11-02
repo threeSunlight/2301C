@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+</head>
+
+<body>
+    <!-- 
+
+       1. ajax,axios,promise的底层是根据什么封装的 -- XMLHttpRequest
+       2. promise函数对象中then方法返回的是promise对象
+       3. then的链式调用
+     -->
+</body>
+<script>
+    /**请求一个接口
+     * 1. 建立连接, 请求成功
+     * 2. 确定请求方法,get,post,put,delete
+     * 3. 参数的设置
+     * 4. 确定是否成功和失败,以及是否报错
+    */
+    //1. 创建对象,创建链接XMLHttpRequest
+    const xhr=new XMLHttpRequest()
+
+    // 2. 确定请求方法
+    xhr.open('get','http://www.baidu.com')
+
+    // 3. 传递参数,发送请求
+    xhr.send()
+
+
+    //4. 绑定事件, 处理响应结果
+    xhr.onreadystatechange=function() {
+        //判断 等于4表示成功建立请求连接
+        if(xhr.readyState===4) {
+            //判断响应状态码 200-299
+            if(xhr.status>=200&&xhr.status<300) {
+                //表示成功
+                resolve(xhr.response);
+            } else {
+                //如果失败
+                reject(xhr.status);
+            }
+        }
+    }
+
+</script>
+
+</html>
