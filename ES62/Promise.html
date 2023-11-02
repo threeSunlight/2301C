@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise函数</title>
+</head>
+<body>
+<script>
+    // 第一步实例化promise
+    // resolve -> 成功 是在then中返回
+    // reject -> 失败,  在catch中返回
+    const p = new Promise(function(resolve,reject) {
+        setTimeout(() => {
+            // 成功
+            // let data = '我是成功的返回'
+            // resolve(data)
+
+
+            // 失败
+            let data = "我是失败的返回"
+            reject(data)
+        },1000)
+    })
+
+    // 使用
+    // p.then(res => {
+    //     console.log(res);
+    // }).catch( err => {
+    //     console.log(err);
+    // })
+
+    // 嵌套写法
+    p.then(
+    (res) => {
+        console.log(res);
+    },
+    (err) => {
+        console.error(err, 'err');
+    })
+</script>
+</body>
+</html>

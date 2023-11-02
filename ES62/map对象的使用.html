@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map对象的使用</title>
+</head>
+<body>
+    <script>
+        const map = new Map([
+        ['name', '张三'],
+        ['title', 'Author']
+        ])
+        // 获取map的长度
+        console.log(map.size);
+        // 获取name的值
+        console.log(map.get('name'));
+        // 判断是否存在该属性
+        console.log(map.has('name'));
+        // 删除当前属性
+        console.log(map.delete('name'));
+        // 清空对象
+        console.log(map.clear());
+    </script>
+</body>
+</html>

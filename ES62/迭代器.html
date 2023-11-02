@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迭代器</title>
+</head>
+<body>
+    <script>
+        //声明一个数组
+        const xiyou = ['唐僧','孙悟空','猪八戒','沙僧'];
+         const obj = {
+            name: 'xiaohong',
+            age: 13,
+            sex: '男'
+         }
+         const xiyous = [{
+            name: 'xiaohong',
+            age: 13,
+            sex: '男'
+         }];
+         let iterator = Symbol(obj);
+         console.log(iterator,'iterator');
+        //使用 for...of 遍历数组, for...in
+        for(let key of iterator){
+            console.log(key,'key--value');
+        }
+
+        for(let key in iterator) {
+            console.log(key,'key-index');
+        }
+     //   let iterator = xiyou[Symbol.iterator]();
+      //  console.log(iterator, 'iterator');
+        // //调用对象的next方法
+        //  console.log(iterator.next(), 'next');
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+    </script>
+</body>
+</html>

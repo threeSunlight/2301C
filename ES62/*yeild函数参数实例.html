@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成器函数参数</title>
+</head>
+<body>
+    <!-- 
+
+        生成器: 在函数名前面加一个 * 号:  例子:  function * aaa(){}
+        遍历器: Iterator, 是由 Symbol()函数组成的,有自己的yield返回值
+        Generator: 生成器和遍历器组合在一起,形成的一个函数,一旦执行next()函数,会一直执行内部所有的next方法,直到终结
+        async和await就是对Generator函数的进一步封装
+
+     -->
+    <script>
+  
+        function  * gen(arg){  
+            console.log(arg); 
+            let one = yield aaa();
+            console.log(one, 'one');
+            let two = yield 222;  
+            console.log(two);
+            yield 333;
+        }
+
+        // function aaa(value) {
+        //     return value
+        // }
+        // let result = aaa('aaa')
+        // let result1 = aaa('2222')
+        // let result2 = aaa('222')
+
+        //执行获取迭代器对象
+        // let iterator = gen('AAAAA');
+        // console.log(iterator);
+        function aaa() {
+            iterator.next("dddddd")
+        }
+        aaa()
+        console.log(iterator.next(), '第一次调用next');
+        console.log(iterator.next('CCCCC'), '第二次调用next');
+        console.log(iterator.next("dddddd"), '第三次调用next');
+        console.log(iterator.next(), '第四次调用next');
+        // // 每调用一次next()都会返回一个对象 {done: , value: },其中value返回的是当前yield函数值,done决定当前函数值是否还能执行next()函数,
+        // //  当done为true的时候表示函数执行完毕,为false的时候表示还要继续执行函数
+     //   console.log(iterator,'iterator');
+
+
+
+    </script>
+</body>
+</html>
