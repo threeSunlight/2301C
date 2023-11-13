@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1. object.defineProperty有几个参数
+        2. get set
+        3. 每次只能监听一个属性,想要监听多个属性,需要循环监听,占据空间,浪费性能
+
+
+     -->
+    <script>
+        let num = 18 
+        let person = {
+            name: "张三",
+            sex: "男©"
+        }
+   
+        Object.defineProperty(person, 'age', {
+           // value: 18
+            //控制属性是否可以被修改，默认值是false
+           // writable:true,
+            // 获取属性
+            get() {
+                console.log('获取当前属性的值');
+                return num
+            },
+            // 设置属性
+            set(value) {
+                console.log('设置当前属性');
+                age = value
+            }
+        })
+        // Object.defineProperty(person, 'name', {
+        //    // value: 18
+        //     //控制属性是否可以被修改，默认值是false
+        //    // writable:true,
+        //     // 获取属性
+        //     get() {
+        //         console.log('获取当前属性的值');
+        //         return num
+        //     },
+        //     // 设置属性
+        //     set(value) {
+        //         console.log('设置当前属性');
+        //         age = value
+        //     }
+        // })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>列表过滤</title>
+		<script type="text/javascript" src="./js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备好一个容器-->
+		<div id="root">
+			<h2>人员列表</h2>
+			<input type="text" placeholder="请输入名字" v-model="keyWord">
+			<ul>
+				<li v-for="(p,index) of newpersons" :key="index">
+					{{p.name}}-{{p.age}}-{{p.sex}}
+				</li>
+			</ul>
+			<!-- 
+				1. 思路:
+				   第一种:  在input上面绑定@input事件,methods里面写函数,去用filter过滤数据,返回值,在input上面绑定@input事件,methods里面写函数,去用includes过滤数据,返回值
+				   第二种:  watch
+				   第三种:  computed
+                    cpmpute: 特点,依赖值必须是data中的数据,依赖data中数据变化而变化
+			 -->
+		</div>
+
+		<script type="text/javascript">
+			Vue.config.productionTip = false
+			new Vue({
+				el:'#root',
+				data:{
+					keyWord:'',
+					persons:[
+						{id:'001',name:'马冬梅',age:19,sex:'女'},
+						{id:'002',name:'周冬雨',age:20,sex:'女'},
+						{id:'003',name:'周杰伦',age:21,sex:'男'},
+						{id:'004',name:'温兆伦',age:22,sex:'男'}
+					],
+                    newpersons:[],
+				},
+                // computed: {
+                //     filterList() {
+                //            return this.persons.filter(item => item.name.includes(this.keyWord))
+                //     },
+                // },
+                watch: {
+                    keyWord: {
+                        // deep: true,
+                        immediate: true,
+                        handler(newValue) {
+                           this.newpersons =  this.persons.filter(item => item.name.includes(newValue))
+                        }
+                    }
+                    // keyWord(newValue) {
+                    //     this.newpersons =  this.persons.filter(item => item.name.includes(newValue))
+                    // }
+                },
+                methods:{
+                    // 第一种: methos方法
+                    // handlerGetValue() {
+                    //    this.newpersons =  this.persons.filter(item => item.name.includes(this.keyWord)) 
+                    // }
+                }
+               
+			
+			}) 
+		</script>
+</html>

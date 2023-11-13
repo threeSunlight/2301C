@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 隐式转换
+        
+        // console.log(10-'2');
+        // // parseInt  取整,两个参数
+        // console.log(parseInt(10.9));
+        // console.log(parseInt('10.9ddddd'));
+        // console.log(parseInt('0109ddddd'));
+        // console.log(parseInt('1x.09ddddd'));
+        // console.log(parseInt('x.09ddddd'),'parseInt');
+        //    // parseFloat  取整,两个参数
+        //    console.log(parseFloat('10.9ddddd'));
+        //    console.log(parseFloat('0109ddddd'));
+        //    console.log(parseFloat('dddddd'));
+        //    console.log(parseFloat('1x.09ddddd'));
+        //    console.log(Number('1.09ddddd'), 'Number');
+
+           /***总结
+            * 将字符串,转换为数字的方式
+            * 1. Number 强制数据转换,只能转化数字类型的字符串,但凡有一个不是,就会是NaN
+            * 2. parseInt 取整数据类型转换,只转换整数,和小数点前的整数数据类型,但是首字母是字符串,将NaN 
+            * 3. parseFloat 浮点数取整,转换小数,但是首字母是字符串,将NaN 
+            * 4. 检测是否成功转换为数字类型,有一个isNaN
+            * **/
+
+
+            /**
+             * 将其他数据类型转化为字符串
+             * 1. toString()  转换成字符串方法
+             * 2. String()  强制转化成字符串
+             * 
+             * ***/
+            let a = 10
+            console.log(a,  '1');
+            console.log(a.toString(),'2');
+             console.log(String('10.9ddddd'));
+            console.log(String('0109ddddd'));
+            console.log(String(true));
+            console.log(String(false));
+            console.log(String(0));
+            console.log(String(null));
+            console.log(String(undefined));
+            console.log(String(Symbol));
+
+            /***
+             * ++i
+             * 先自身加1,后参与运算
+             * i++
+             * 先参与运算,后计算
+             * 
+             * **/
+
+            //  let i  = 10
+            //  ++i    
+            //  console.log(i);  // 11
+            //  let i  = 10
+            //  i++    
+            //  console.log(i);  // 11
+
+             // 一个如果是0 表示失败,
+             let c = 0
+            console.log(!0, '0000000');
+             console.log(!"", '0000000');
+             console.log(!undefined, '0000000');
+             console.log(!null, '0000000');
+             console.log(!"1");
+             if(!c && c !=0) {
+                // 失败
+             } else {
+                // 成功
+             }
+          /**
+           * Number
+           * parseInt
+           * parseFloat
+           * toString()
+           * String()
+           * !""  true
+           * !!undefined  true
+           * !null  true
+           * !0  true
+           * ***/
+    </script>
+</body>
+</html>

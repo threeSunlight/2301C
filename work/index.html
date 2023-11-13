@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点名器</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <!-- 
+        1. 页面: 
+            划分模块,按照模块去编写组件   3H
+        2. js逻辑方面
+            1. 先确定我需要什么数据类型,一般都包含唯一值,id   10分钟后
+            2. 确定我们需要哪些功能,每个功能有哪些注意点
+               2.1 时间功能: 实时更新,转换我们想要的样式
+                 2.1.1 去封装时间
+                 2.1.1 修改时间格式
+                2.2 渲染左侧列表信息
+                  2.2.1 按照样式排列; flex
+                  2.2.2 颜色动态变化,css
+                2.3 右侧四个按钮功能实现
+                   2.3.1 单人点名:
+                      2.3.1.2 在全部人员没有点名结束之前,不能重复出现,所以需要保存两个数组,一个是真正点名的数组
+                   2.3.2 双人点名:
+                       2.3.2.1 在全部人员没有点名结束之前,不能重复出现,所以需要保存两个数组,一个是真正点名的数组,注意同时删除
+                       两个数据,不能通过下标修改
+                    2.3.1 男生点名:
+                      2.3.1.2 在全部人员没有点名结束之前,不能重复出现,所以需要保存两个数组,一个是真正点名的数组
+                   2.3.2 女生点名:
+                       2.3.2.1 在全部人员没有点名结束之前,不能重复出现,所以需要保存两个数组,一个是真正点名的数组,注意同时删除
+                       两个数据,不能通过下标修改      
+
+             3. 天选之人,样式编写
+
+     -->
+    <div class="order">
+        <!-- 顶部header,包含标题和时间戳 -->
+        <div class="header">
+            <h1>H2301C点名器</h1>
+        </div>
+        <div class="header_title"></div>
+        <!-- 内容区域: 学生姓名展示,以及天选区域 -->
+        <div class="content">
+            <div class="left">
+                <ul>
+                    
+                </ul>
+            </div>
+            <div class="right">
+                <!-- 天选 -->
+                <div class="selected">
+                    <p>天选之人: </p> <span id="selecteName"></span>
+                </div>
+                <div class="right_footer">
+                    <button onclick="handlerOne()" name="one">单人点名</button>
+                    <button onclick="handlerTwo()" name="two">双人点名</button>
+                    <button onclick="handlerMan()" name="man">男生点名</button>
+                    <button onclick="handlerWoman()" name="woman">女生点名</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="./index.js"></script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 防抖 debounce
+    /**
+     * fn: 是你自己封装的搜索函数
+     * delay: 延时调用时间, 你想延时调用多少秒,修改即可
+    */
+    function debounce (fn,delay=200) {
+        let timer=0
+        return function() {
+            // 如果这个函数已经被触发了
+            if(timer) {
+                /*清楚定时器,函数接着往下走**/
+                clearTimeout(timer)
+            }
+            timer=setTimeout(() => {
+                fn.apply(this,arguments); // 透传 this和参数
+                timer=0
+            },delay)
+        }
+    }
+
+    // 节流函数 throttle
+    function throttle (fn,delay=200) {
+        let timer=0
+        return function() {
+            if(timer) {
+                /*直接返回,函数不会再运行**/
+                return
+            }
+            timer=setTimeout(() => {
+                fn.apply(this,arguments); // 透传 this和参数
+                timer=0
+            },delay)
+        }
+    }
+</script>
+
+</html>

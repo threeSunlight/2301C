@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 全局作用
+    let a = "你好"
+
+
+    function ccc() {
+        console.log(a);
+        let b = "西藏"
+    }
+    ccc()
+
+    {
+        console.log(a);
+        let d = "哈达"
+    }
+
+    /**
+     * 变量声明是有提升的,
+     * 函数声明也有提升,函数优先级高于变量提升
+     * 
+     * 
+     * 用let声明的变量值,和函数名不能重复
+     * 
+     * ***/
+    console.log(vs); 
+    let v = "打游戏"
+  let v = "dddd"
+
+    //函数声明
+    function vs() {
+            console.log(a) 
+    }
+
+   //函数表达式 
+    var b = function(){
+            console.log(b)
+    }
+</script>
+</html>

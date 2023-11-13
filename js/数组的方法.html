@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // //1. 判断是不是数组 Array.isArray  返回值是 true false
+        // let array='111'
+        // console.log(Array.isArray(array));
+        // // 2. push  向数组的末尾添加,返回新数据的长度,会改变原数组
+        // let c=[1,2]
+        // c.push(1,2,3,4)
+        // c.push(99999)
+        // console.log(c,'c');
+        // // 3. pop ***删除并返回数组的最后一个元素***，若该数组为空，则返回undefined。***原数组改变。*** ***返回的是被删除的元素***
+        // let place=['桂林','上海','北京']
+        // let result=place.pop()
+
+        // console.log(place,'place');
+        // console.log(result,'place');
+
+        // // 4.unshift() 数组的开头添加一个或多个元素，并返回新的数组长度。原数组改变
+        // c.unshift("网红狼 可可西里")
+        // c.unshift("网红狼","可可西里")
+        // console.log(c);
+
+        // // 5. shift()删除并返回数组的第一个元素，若该数组为空，则返回undefined。原数组改变。
+
+        // let result1=c.shift()
+
+        // console.log(result1,'place');
+        // console.log(c,'place');
+
+        // // 6.concat 合并两个或多个数组，生成一个新的数组。原数组不变
+        // let allResult=c.concat(place)
+        // console.log(allResult);
+        // console.log(c);
+        // console.log(place);
+
+        // // 7. reverse()
+        // // 8. sort() 排序
+        // let arr=[1,2,4,3];
+        // // 升序
+        // arr.sort((a,b) => {
+        //     return a-b;
+        // });
+        // // 降序
+        // arr.sort((a,b) => {
+        //     return b-a;
+        // })  
+
+
+        // // 8. join() 将数组的每一项用指定字符连接形成一个字符串。默认连接字符为 “,” 逗号。join是有返回值
+        // // let arr = [1,2,3,4];
+        // // let str = arr.join();
+        // // let str1 = arr.join('-');
+        // // console.log(str); // 1,2,3,4
+        // // console.log(str1); // 1-2-3-4
+
+        // // 9. toString()此方法将数组转化为字符串
+        // let arr1 = [1, 2, 3, 4, 5];
+        // let str = arr1.toString()
+        // console.log(str, '69')// 1,2,3,4,5
+
+        // // 10.slice() ***slice(start,end).从start开始，end之前结束，不到end。不改变原数组***
+        // let arr2 = [1, 2, 3, 4, 5];
+        // let result3 = arr2.slice(0,2)
+        // console.log(result3);
+
+        // 11. splice() splice(start, number, item, item) 
+        // 从start开始删除number位，然后将后面参数插入数组。返回删除元素组成对数组，会改变原数组
+        // 包含 start
+        // 改变原数组,返回新的数组
+        // 从删除的位置向原数组添加数据
+        // let place=['西藏','上海','深圳','证券','外企']
+        // let result=place.splice(1,3,'可可西里网红狼','可可西里网红狼2','可可西里网红狼3','可可西里网红狼4')
+        // console.log(result,' 结果值');
+        // console.log(place,'原数组');
+
+        // // map
+        // let testArr=['子项0','子项1','子项2'];
+        // let resultArr=testArr.map((item,index) => {
+        //     return `处理·${item}`
+        // });
+        // console.log(resultArr,'结果数据');
+        // console.log(testArr,'原项数据');
+        // 结果： ["处理·子项0", "处理·子项1", "处理·子项2"]
+
+
+        // filter 过滤
+        // let filterArr=['子项0','子项1','子项2'];
+        // let filterResult=filterArr.filter(item => item==='子项0');
+        // console.log(filterArr); // ["子项0", "子项1", "子项2"]
+        // console.log(filterResult);["子项0"]
+
+        // // find
+        // let findArr=['子项0','子项1','子项2']
+        // let findResult=findArr.find((item,index) => {
+        //     return item==='子项0';
+        // });
+        // console.log(findResult);
+        // // 结果为: 子项0
+        // console.log(findArr);
+
+
+        // reduce  用来计算求和, a是当前数组里面的值,b是返回的远算值
+        let reduceArr=[0,1,2,3,4]
+        let reduceResult=reduceArr.reduce((a,b) => {
+            return a*b;
+        });
+        console.log(reduceResult);
+        // 结果: 10
+    </script>
+</body>
+
+</html>

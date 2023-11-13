@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!-- 需求: 有一个姓和一个名,实现输入姓和名都修改 -->
+  <div id="app">
+     姓: <input type="text" v-model:value="firstName" @change="handleGetName"><br/>
+     名: <input type="text" v-model:value="lastName" @change="handleGetName"><br/>
+     全名: <input type="text" v-model="fullName" @change="handlerFullName">
+     <!-- 全名: <span>{{ fullName }}</span> -->
+  </div>
+  <!-- 总结:
+    1. 计算属性声明的变量,不能在data中重复声明
+    2. 计算属性依赖data中的属性变化而变化
+    3. 计算属性是有缓存性的
+    4. 计算属性是同步的
+    5. 计算属性中get方法有返回值
+     计算属性的总结
+				1. 计算属性是同步
+				2. 计算属性依赖的值是data中定义的,他声明值在data中不定义,不存在
+				3. 计算属性是有缓存的
+		        4. 计算属性中get方法需要有return返回值
+				5. get函数什么时候执行？
+								(1).初次读取时会执行一次。
+								(2).当依赖的数据发生改变时会被再次调用。
+		-->
+        <!-- 
+			计算属性：
+					1.定义：要用的属性不存在，要通过已有属性计算得来。
+					2.原理：底层借助了Objcet.defineproperty方法提供的getter和setter。
+					3.get函数什么时候执行？
+								(1).初次读取时会执行一次。
+								(2).当依赖的数据发生改变时会被再次调用。
+					4.优势：与methods实现相比，内部有缓存机制（复用），效率更高，调试方便。
+					5.备注：
+							1.计算属性最终会出现在vm上，直接读取使用即可。
+							2.如果计算属性要被修改，那必须写set函数去响应修改，且set中要引起计算时依赖的数据发生改变。
+		 -->
+  
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            firstName: "",
+            lastName: "",
+            fullName: ""
+        },
+       
+        // computed: {
+        //      // 完成版写法
+        //     // fullName:{
+        //     //     get() {
+        //     //         return !this.firstName ? "" : this.firstName + '-' + this.lastName
+        //     //     },
+        //     //     set(newValue) {
+        //     //         let [first,last] = newValue.split('-')
+        //     //         this.firstName = first
+        //     //         this.lastName = last
+        //     //     }
+        //     // }
+        //      // 简写法
+        //      fullName() {
+        //         return !this.firstName ? "" : this.firstName + '-' + this.lastName
+        //      }
+        // }
+        methods: {
+            handleGetName() {
+                this.fullName = this.firstName + '-' + this.lastName
+            },
+            handlerFullName() {
+                let [first,last] = this.fullName.split('-')
+                this.firstName = first
+                this.lastName = last 
+            }
+        }
+    })
+</script>
+</html>

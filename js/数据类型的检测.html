@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let num=123
+        // let str="123"
+        // let bool=true
+
+        // let arr=[]
+        // let obj={}
+        // let fn=function() {}
+        // let cla=class {}
+
+        // console.log(typeof num); // number
+        // console.log(typeof str); // string
+        // console.log(typeof bool); // boolean
+        // console.log(typeof null); // object 记住 
+        // console.log(typeof undefined); // undefined
+        // console.log(typeof arr); // object
+        // console.log(typeof Array); // function
+        // console.log(typeof obj); // object
+        // console.log(typeof Object); // function
+        // console.log(typeof fn); // function
+        // console.log(typeof cla); // function
+        // console.log(typeof aaaaa) // undefined，未定义的变量也为undefined
+
+
+        /**
+         * typeof检测基本数据类型,会返回基本数据类型,null除外,返回的是object
+         * 复杂数据类型会返回object或function
+         * 
+         * 
+         * ***/
+
+
+        // let num=123
+        // let str="123"
+        // let bool=true
+
+        // let arr=[]
+        // let obj={}
+        // let fn=function() {}
+        // let cla=class {}
+        // let abc=new Number(12)
+
+
+
+
+        // console.log(abc instanceof Number); // true
+        // console.log(num instanceof Number); // false
+        // console.log(str instanceof String); // false
+        // console.log(bool instanceof Boolean); // false
+        // console.log(null instanceof Object); // false
+        // console.log(undefined instanceof Object); // false
+
+
+        // console.log(arr instanceof Array); // true
+        // console.log(arr instanceof Object); // true
+        // console.log(obj instanceof Object); // true
+        // console.log(fn instanceof Function); // true
+        // console.log(fn instanceof Object); // true
+        // console.log(cla instanceof Function); // true
+        // console.log(cla instanceof Object); // true
+
+        // // Object instanceof Object.prototype ==> 都是这种检测
+        // function Person () {}
+        // let p=new Person()
+        // console.log(p instanceof Person); // true
+
+
+        // Object.prototype.toString.call()
+        // apply也行，返回字符串[object 首字母大写的其他类型]
+        let num=123
+        let str="123"
+        let bool=true
+
+        let arr=[]
+        let obj={}
+        let fn=function() {}
+        let cla=class {}
+
+        console.log(Object.prototype.toString.call(num));// [object Number]
+        console.log(Object.prototype.toString.call(str));// [object String]
+        console.log(Object.prototype.toString.call(bool));// [object Boolean]
+        console.log(Object.prototype.toString.call(null));// [object Null]
+        console.log(Object.prototype.toString.call(undefined));//[object Undefined]
+
+        console.log(Object.prototype.toString.call(arr));// [object Array]
+        console.log(Object.prototype.toString.call(obj));// [object Object]
+        console.log(Object.prototype.toString.call(fn));// [object Function]
+        console.log(Object.prototype.toString.call(cla));// [object Function]
+    </script>
+</body>
+
+</html>

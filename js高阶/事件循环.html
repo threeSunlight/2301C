@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link  src=""></link>
+</head>
+
+<body>
+    <!-- 
+        事件循环, EventLoop
+        执行上下文
+        单线程:  从上到下执行
+        事件: 同步事件,异步事件,执行顺序是 先执行同步任务,在执行异步任务
+        进栈
+        出栈
+        异步任务: 宏任务和微任务两种, 先执行微任务,在执行宏任务
+        
+
+        什么是: EventLoop
+        任务分为同步任务和异步任务两种,先执行同步任务,在执行异步任务
+        但是异步任务又分为两种,宏任务和微任务,先执行微任务,再执行宏任务
+        宏任务: setTimout,setInterval
+        微任务: .then .catch  async await
+        同步任务: new Promise
+
+        同步任务: 先进先出
+        异步任务: 取决于宏任务和微任务
+        微任务: 先进先出
+
+     -->
+</body>
+<script>
+
+
+    //  同步任务
+    console.log(1)
+
+    setTimeout(() => {
+        console.log('setTimeout')
+        async function hello () {
+            console.log(6);
+        }
+        new Promise((resolve,reject) => {
+            console.log(7)
+            resolve()
+        }).then(() => {
+            console.log(8)
+        })
+
+    },0)
+    setTimeout(() => {
+        console.log(9, 'setTimeout');
+    },0)
+    // 同步贪污
+    new Promise((resolve,reject) => {
+        console.log(3)
+        resolve()
+    }).then(() => {
+        console.log(4)
+    })
+    // 同步
+    console.log(5)
+
+</script>
+<script>
+
+
+    //  同步任务
+    console.log(1)
+
+    setTimeout(() => {
+        console.log('setTimeout')
+        async function hello () {
+            console.log(6);
+        }
+        new Promise((resolve,reject) => {
+            console.log(7)
+            resolve()
+        }).then(() => {
+            console.log(8)
+        })
+
+    },0)
+    setTimeout(() => {
+        console.log(9, 'setTimeout');
+    },0)
+    // 同步贪污
+    new Promise((resolve,reject) => {
+        console.log(3)
+        resolve()
+    }).then(() => {
+        console.log(4)
+    })
+    // 同步
+    console.log(5)
+
+</script>
+</html>

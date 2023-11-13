@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //1.案例一:
+    function foo() {
+        console.log(this);
+    }
+    var obj={
+        name: "why",
+        foo: foo
+    }
+
+    obj.foo() 
+
+
+
+
+
+
+    //2.案例二:
+    var obj={
+        name: "why",
+        eating: function() {
+            console.log(this); // name在window是关键字 
+            console.log(this.name, '---------');
+            console.log(this.aaa+"在吃东西") // 谁在吃东西  undefined 在吃东西  window在吃东西 
+        },
+        running: function() {
+            console.log(obj.name+"在跑步") // 
+        }
+    }
+
+    // obj.eating()
+    // obj.running()
+
+    var fn=obj.eating
+    fn()
+
+
+    // 3.案例三:
+    var obj1={
+        name: "obj1",
+        foo: function() {
+            console.log(this)
+        }
+    }
+
+    var obj2={
+        name: "obj2",
+        bar: obj1.foo
+    }
+
+    obj2.bar()
+</script>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>天气案例</title>
+		<!-- 引入Vue -->
+		<script type="text/javascript" src="./js/vue.js"></script>
+	</head>
+	<body>
+        <!--    
+            watch: 
+            1. 监听的属性在data中要进行声明
+            2. watch是异步的,没有缓存,可以请求接口 
+            3. 有两个配置项: immediate: 开启页面立即执行
+            deep: 深度监听
+            4. watch: 底层借助了Objcet.defineproperty方法提供的getter和setter。
+         -->
+
+
+		<!-- 准备好一个容器-->
+		<div id="root">
+			<h2>今天天气很{{ info}}</h2>
+			<!-- 绑定事件的时候：@xxx="yyy" yyy可以写一些简单的语句 -->
+			<!-- <button @click="isHot = !isHot">切换天气</button> -->
+			<button @click="isHot = !isHot">切换天气</button>
+            <hr/>
+           <span>初代打工人工种: {{person.job}}</span> <br/>
+            <span>初代打工人工资: {{person.salary}}w</span><br/>
+            <span>二代打工人名称: {{person.children.name}}</span><br/>
+            <span>二代打工人年龄: {{person.children.age}}</span><br/>
+            <button @click="()=> {
+                person.job = '高级构造师',
+                person.salary = 100
+            }">修改初代打工人工种</button>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+		// 1.点击按钮切换天气状况, 判断是否点击 ishot
+		// 首先判断ishot为true的时候天气显示炎热,为false显示凉爽
+		// 点击方法的时候,修改ishot,
+
+		/// info用来显示炎热和凉爽
+		const vm = new Vue({
+			el:'#root',
+			data:{
+				isHot:true,
+				info: '',
+                person: {
+                    job: "全栈开发工程师",
+                    salary: '20',
+                    children:{
+                        name: '全栈小小小开发工程师',
+                        age: 18
+                    }
+                }
+			},
+
+            computed:{
+                // info() {
+                //         return this.isHot ? '炎热' : '凉爽'
+                //     }
+            },
+			
+			methods: {
+				// changeWeather() {
+				// 	this.isHot = !this.isHot
+				// 	//this.info = this.isHot ? '炎热' : '凉爽'
+				// }
+			},
+            watch: {
+                // 完成版写法
+                // isHot:{
+                //     immediate: true,
+                //     handler(newValue,oldValue) {
+                //         console.log(newValue,oldValue);
+                //         this.info = newValue ? '炎热' : '凉爽'
+                //     }
+                // }
+                // 简写
+                // isHot(newValue,oldValue) {
+                //         console.log(newValue,oldValue);
+                //         this.info = newValue ? '炎热' : '凉爽'
+                //     }
+                'person.job':{
+                   //deep: true,
+                    handler(newValue,oldValue) {
+                        console.log(newValue,oldValue);
+                        
+                    }
+                },
+                'person.salary':{
+                   //deep: true,
+                    handler(newValue,oldValue) {
+                        console.log(newValue,oldValue);
+                        
+                    }
+                }
+                person:{
+                   //deep: true,
+                    handler(newValue,oldValue) {
+                        console.log(newValue,oldValue);
+                        
+                    }
+                }
+                
+            }
+		})
+	</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.min.js"></script>
+</head>
+<body>
+    <!-- 准备一个盒子 -->
+    <div id="root">
+        <!-- 我现在在北京上庄地区,今天温度是零下2摄氏度 -->
+        我现在在北京{{ place }}地区, 今天温度是{{wed}}摄氏度
+    </div>
+</body>
+<script type="text/javaScript">
+    new Vue({
+        el: "#root",
+        data: {
+            place: '上庄',
+            wed: '-2'
+        }
+    })
+</script>
+</html>
