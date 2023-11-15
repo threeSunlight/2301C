@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 需求1：定义一个v-big指令，和v-text功能类似，但会把绑定的数值放大10倍。1*10 2*10 -->
+        <!-- 需求2：定义一个v-fbind指令，和v-bind功能类似，但可以让其所绑定的input元素默认获取焦点。 -->
+        当前的值: <span v-text="n"></span><br />
+        放大十倍的值: <span v-big="n"></span><br />
+        原生input: <input v-bind:value="n" /><br />
+        自定义指令执行input: <input v-fbind:value="n" />
+        <button @click="n++">指令解析</button>
+    </div>
+</body>
+<script>
+
+    new Vue({
+        el: "#root",
+        data: {
+            n: 2
+        },
+        directives: {
+            // 简写方式
+            big (element,binding) {
+                element.innerText=binding.value*10
+            },
+            fbind: {
+                bind (element,binding) {
+                    element.value=binding.value
+                    console.log(element);
+                    console.log(binding);
+                    console.log('binding');
+                },
+                //指令所在元素被插入页面时
+                inserted (element,binding) {
+                    element.focus()
+                    // console.log(element);
+                    // console.log(binding);
+                    // console.log('inserted');
+                },
+                //指令所在的模板被重新解析时
+                update (element,binding) {
+                    element.value=binding.value
+                    console.log('update');
+                },
+            }
+        }
+    })
+</script>
+
+</html>

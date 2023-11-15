@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>分析生命周期</title>
+		<!-- 引入Vue -->
+		<script type="text/javascript" src="./js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备好一个容器-->
+		<div id="root" :x="n">
+			<h2 v-text="n"></h2>
+			<h2>当前的n值是：{{n}}</h2>
+			<button @click="add">点我n+1</button>
+			<button @click="bye">点我销毁vm</button>`
+		</div>
+		<!-- v-if  true--false经历了那些生命周期
+				   false---true 经历了那些生命周期
+		
+		-->
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+
+		new Vue({
+			el:'#root',
+			// template:`
+			// 	<div>
+			// 		<h2>当前的n值是：{{n}}</h2>
+			// 		<button @click="add">点我n+1</button>
+			// 	</div>
+			// `,
+			data:{
+				n:1
+			},
+			methods: {
+				add(){
+					console.log('add')
+					this.n++
+				},
+				bye(){
+					console.log('bye')
+					this.$destroy()
+				}
+			},
+			watch:{
+				n(){
+					console.log('n变了')
+				}
+			},
+			beforeCreate() {
+                // vue实例刚被解析,没有this指向
+				console.log('beforeCreate')
+                console.log(this.n);
+			},
+			created() {
+                // vue实例被加载,获取不到dom元素
+				console.log('created')
+			},
+            // 挂载前
+            // 挂载后
+			beforeMount() {
+                //  虚拟dom进行节点对比
+				console.log('beforeMount')
+			},
+			mounted() {
+                // 挂在后,可以获取到dom元素
+				console.log('mounted')
+			},
+            // 模版重新解析加载触发生命钩子
+			beforeUpdate() {
+                // 新旧虚拟dom生成.进行节点对比
+				console.log('beforeUpdate')
+			},
+			updated() {
+                // 渲染真实dom
+				console.log('updated')
+			},
+            // 销毁的钩子
+			beforeDestroy() {
+				console.log('beforeDestroy')
+			},
+			destroyed() {
+				console.log('destroyed')
+			},
+		})
+	</script>
+</html>

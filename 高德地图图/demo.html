@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实例化地图</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%
+        }
+        #app{
+            height: 80%;
+            width: 80%;
+        }
+        .amap-info-contentContainer{
+            width: 400px;
+            height: 200px;
+            background-color: pink;
+            color: antiquewhite;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 第一步: 准备一个盒子,放置地图实例 -->
+    <div id="app"></div>
+</body>
+<!-- 第二步: 代理配置安全秘钥 -->
+<script type="text/javascript">
+    window._AMapSecurityConfig={
+        securityJsCode: "93a0fc27a2bd799d623b58783b0b6c06",
+    }
+</script>
+<!-- 第三步: 引入loader,保证地图的兼容性,并且实现地图配置 -->
+<script src="https://webapi.amap.com/loader.js"></script>
+<!-- 第四步:
+        (1)实例化地图,
+        (2)并且添加起点和终点,图标 , 
+        (3)完成连线 
+     简易版本的路线图
+     第五步: 点击图标点,弹出弹框,并且把经纬度显示在弹框上,同时把电话显示在弹框上
+     先展示弹框,内容全部显示
+     第一步: 编写弹框,添加内容
+     第二步: 绑定点击事件,弹出弹框
+     第三步: 把线上图标换成本地图标
+-->
+<script type="text/javascript">
+    // 设置路径的经纬度集合
+    /**
+     * 通辽:122.25052 , 43.65798
+     * 西藏:经纬度：91.14522 , 29.65398 
+     * 云南瑞丽:经纬度：97.86249 , 24.02282 
+     * 宁夏:经纬度：106.24164 , 38.49074 
+     * **/
+    const lineArr = [
+        // [97.86249 , 24.02282 ],
+     //   [91.14522 , 29.65398],
+        [106.24164 , 38.49074],
+        [122.25052 , 43.65798]
+    ]
+    /***自定义弹框内容**/
+    const content = [
+        '<div style="color: red; font-size:26px;">当前位置是:宁夏自治博物馆</div>',
+        '<div>电话:0968-8888888888</div>'
+    ]
+  AMapLoader.load({
+    key: '7901c58e80d4a460b6540108868c34c8',
+    version: '2.0'
+  }).then((AMap) => {
+    // 第一步: 实例化地图
+    const map=new AMap.Map('app');
+    // 第二步: 将线路绘制到地图上
+    const polyline = new AMap.Polyline({
+        path: lineArr, // 路径集合
+        strokeColor: '#3366FF', // 路径颜色
+        strokeWeight: 5,    //线宽
+        strokeStyle: 'solid' // 线条样式
+    })
+
+    /*修改图片**/
+    const icon = new AMap.Icon({            
+	     image: './assest/tOY9KpHFaeglM4b.png',
+	     size: new AMap.Size(22, 28),  //图标所处区域大小
+	     imageSize: new AMap.Size(22,28) //图标大小
+	 })    
+
+    // 第三步,在起点添加一个图标
+    const marker = new AMap.Marker({
+        position: [106.24164 , 38.49074], //位置  经度: 116.39  维度:39.9
+        icon: icon,
+    })
+
+    //第四步,在终点的位置添加一个图标
+    const markers = new AMap.Marker({
+        position: [122.25052 , 43.65798], //位置  经度: 116.39  维度:39.9
+    //  icon: "https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png",
+    })
+
+    //第五步: 编写弹框,并且自定义弹框中的内容
+    const infoWindow = new AMap.InfoWindow({
+        isCustom: true, // 自定义弹窗
+        content: content.join('<br/>'),
+        offset: new AMap.Pixel(-45,-45) // 向左偏移量
+    })
+
+    // 第六步, 声明点击事件,弹出弹框
+    const onMarkerClick = function(e) {
+        console.log(e,'81');
+        infoWindow.open(map,e.target.getPosition()); // 打开信息窗体
+    }
+
+
+    //点击地图关闭弹框
+    const onMapClick = function(e){
+        console.log(e, '点击地图');
+        infoWindow.close()
+    }
+
+    map.on('click', onMapClick)
+    marker.on('click', onMarkerClick)
+    //将线条绘制在地图上,也要将图标绘制到地图上
+    map.add([polyline,marker,markers])
+  }).catch( e => {
+    console.log(e);
+  })
+
+
+
+</script>
+</html>

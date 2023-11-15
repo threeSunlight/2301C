@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 第一步: 引入css -->
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <!-- 第二步: 引入进key -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=d41ce16a4f7ed8d78687e0473fdd5a71"></script>
+    <style>
+        html,
+        body,
+        #container {
+          width: 90%;
+          height: 90%;
+        }
+    </style>
+</head>
+<body>
+    <!--  第三步: 准备放高德地图的盒子 -->
+    <div id="container">
+
+    </div>
+</body>
+
+<!-- 第四步: 配置秘钥 -->
+<script>
+// 实例化地图
+ var map = new AMap.Map('container', {
+        viewMode: '3D', // 默认使用 2D 模式，如果希望使用带有俯仰角的 3D 模式，请设置 viewMode: '3D'
+        zoom:11, // 初始化地图层级,最小是3,最大是20 [3,20]
+        pitch:70, // 地图俯仰角度，有效范围 0 度- 83 度
+     //   center: [91.14522 , 29.65398 ] // 初始化地图中心点
+    });
+</script>
+</html>
