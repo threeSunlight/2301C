@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>实例化地图</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
     <style>
         html,
         body {
@@ -24,6 +25,20 @@
             background-color: pink;
             color: antiquewhite;
             font-size: 20px;
+        },
+        .context_menu{
+            position: relative;
+            min-width: 12rem;
+            padding: 0;
+        }
+
+        .context_menu p{
+            cursor: pointer;
+            padding: 0.25rem 1.25rem;
+        }
+
+        .context_menu p:hover{
+            background: #ccc;
         }
     </style>
 </head>
@@ -75,12 +90,24 @@
         '地址 :北京市朝阳区望京阜荣街10号首开广场4层',
     ]
 
+    // 右键自定义鼠标事件,把所有的自定义的内容,添加到数组中,和信息体一样
+    const rightContent=[
+        "<div class='info context_menu'>",
+        "  <p onclick='menu.zoomMenu(0)'>缩小</p>",
+        "  <p class='split_line' onclick='menu.zoomMenu(1)'>放大</p>",
+        "  <p class='split_line' onclick='menu.distanceMeasureMenu()'>距离量测</p>",
+        "  <p onclick='menu.addMarkerMenu()'>添加标记</p>",
+        "</div>"
+
+    ]
     let contextMenuPositon;
+    let menu;
     AMapLoader.load({
         key: 'd41ce16a4f7ed8d78687e0473fdd5a71',
         zoom: 9,  // 缩放地图
         viewModel: '2d',
-        version: '2.0'
+        version: '2.0',
+        plugins:['AMap.MouseTool']
     }).then((AMap) => {
         // 第一步: 实例化地图
         const map=new AMap.Map('app');
@@ -134,40 +161,104 @@
         }
 
 
-        // 创建右键菜单--实例
-        const rightMenu=new AMap.ContextMenu()
+        // 创建右键菜单--实例 
+        // isCustom 自定义属性标识
+     //   const rightMenu=new AMap.ContextMenu({isCustom: true,content: rightContent.join('')})
+        //自定义菜单类,构造 函数
+        function ContextMenu (map) {
+            var me = this;
 
-        //右键放大
-        rightMenu.addItem("放大一级",function() {
-            map.zoomIn();
-        },0);
+            //地图中添加鼠标工具MouseTool插件
+           this.mouseTool=new AMap.MouseTool(map);
 
-        //右键缩小
-        rightMenu.addItem("缩小一级",function() {
-            map.zoomOut();
-        },1);
+           this.contextMenuPositon=null;
 
-        //右键显示全国范围
-        rightMenu.addItem("缩放至全国范围",function(e) {
-            map.setZoomAndCenter(4,[108.946609,34.262324]);
-        },2);
+            var content=[];
 
-        //右键添加Marker标记
-        rightMenu.addItem("添加标记",function(e) {
+            content.push("<div class='info context_menu'>");
+            content.push("  <p onclick='menu.zoomMenu(0)'>缩小</p>");
+            content.push("  <p class='split_line' onclick='menu.zoomMenu(1)'>放大</p>");
+            content.push("  <p class='split_line' onclick='menu.distanceMeasureMenu()'>距离量测</p>");
+            content.push("  <p onclick='menu.addMarkerMenu()'>添加标记</p>");
+            content.push("</div>");
+
+            //通过content自定义右键菜单内容
+            this.contextMenu=new AMap.ContextMenu({isCustom: true,content: content.join('')});
+
+            //地图绑定鼠标右击事件——弹出右键菜单
+            map.on('rightclick',function(e) {
+                me.contextMenu.open(map,e.lnglat);
+                me.contextMenuPositon=e.lnglat; //右键菜单位置
+            });
+        }
+
+        ContextMenu.prototype.zoomMenu=function zoomMenu (tag) {//右键菜单缩放地图
+            if(tag===0) {
+                map.zoomOut();
+            }
+            if(tag===1) {
+                map.zoomIn();
+            }
+            this.contextMenu.close();
+        };
+
+        ContextMenu.prototype.distanceMeasureMenu=function() {  //右键菜单距离量测
+            this.mouseTool.rule();
+            this.contextMenu.close();
+        };
+
+        ContextMenu.prototype.addMarkerMenu=function() {  //右键菜单添加Marker标记
+            this.mouseTool.close();
             var marker=new AMap.Marker({
                 map: map,
                 icon: "https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png",
-                position: contextMenuPositon //基点位置
+                position: this.contextMenuPositon||map.getCenter() //基点位置
             });
-        },3);
+            this.contextMenu.close();
+        };
+
+
+
+     //创建右键菜单
+     menu = new ContextMenu(map);
+
+     menu.contextMenu.open(map);
+
+
+
+        // map.on('rightclick',function(e) {
+        //     console.log(e,'右键绑定事件');
+        //     // me.contextMenu.open(map, e.lnglat);
+        //     rightMenu.open(map,e.lnglat);
+        //     contextMenuPositon=e.lnglat;
+        // });
+        // //右键放大
+        // rightMenu.addItem("放大一级",function() {
+        //     map.zoomIn();
+        // },0);
+
+        // //右键缩小
+        // rightMenu.addItem("缩小一级",function() {
+        //     map.zoomOut();
+        // },1);
+
+        // //右键显示全国范围
+        // rightMenu.addItem("缩放至全国范围",function(e) {
+        //     map.setZoomAndCenter(4,[108.946609,34.262324]);
+        // },2);
+
+        // //右键添加Marker标记
+        // rightMenu.addItem("添加标记",function(e) {
+        //     var marker=new AMap.Marker({
+        //         map: map,
+        //         icon: "https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png",
+        //         position: contextMenuPositon //基点位置
+        //     });
+        // },3);
 
         // 第三步: 把折线添加到地图实例上
         map.add([polyline,polylines,marker,markers,infoWindow])
-        map.on('rightclick',function(e) {
-            console.log(e,'右键绑定事件');
-            rightMenu.open(map,e.lnglat);
-            contextMenuPositon = e.lnglat;
-        });
+
         marker.on('click',clickMarker)
         // 缩放地图到合适的视野级别
         map.setFitView()
