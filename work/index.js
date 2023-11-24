@@ -2,24 +2,17 @@
 // 初始数据
 const classList = [
 	{ id: 1, name: '刘博文', sex: 0 },
-	{ id: 2, name: '杨浩淇', sex: 0 },
 	{ id: 3, name: '余道林', sex: 0 },
 	{ id: 4, name: '张志辉', sex: 0 },
 	{ id: 5, name: '展立业', sex: 0 },
-	{ id: 6, name: '赵中阳', sex: 0 },
-	{ id: 7, name: '周天龙', sex: 0 },
-	{ id: 8, name: '王志阳', sex: 0 },
 	{ id: 9, name: '李媛媛', sex: 1 },
 	{ id: 10, name: '冯兴微', sex: 1 },
 	{ id: 11, name: '张梦佳', sex: 1 },
 	{ id: 12, name: '张秋景', sex: 1 },
-	{ id: 13, name: '王婷婷', sex: 1 },
 	{ id: 14, name: '冯士靖', sex: 0 },
 	{ id: 15, name: '付少聪', sex: 0 },
 	{ id: 16, name: '佘晗尊', sex: 0 },
 	{ id: 17, name: '徐贺翔', sex: 0 },
-	{ id: 18, name: '杨子乐', sex: 0 },
-	{ id: 19, name: '张赛辉', sex: 0 },
 	{ id: 20, name: '曹世豪', sex: 0 },
 	{ id: 21, name: '赵晓宁', sex: 0 },
 	{ id: 22, name: '曹浩然', sex: 0 },
@@ -31,9 +24,8 @@ const classList = [
 	{ id: 28, name: '孙健', sex: 0 },
 	{ id: 29, name: '丁卓肖', sex: 0 },
 	{ id: 30, name: '陈亚东', sex: 0 },
-	{ id: 31, name: '王凯', sex: 0 },
 	{ id: 32, name: '裴丽珂', sex: 1 },
-	{ id: 33, name: '李炎沛', sex: 0 },
+	{ id: 33, name: '丁赞宇', sex: 0 },
 ];
 
 // 复制一个数据,我们用于选择数据,修改数组使用,是否选中,移除
@@ -211,6 +203,7 @@ function handlerTwo() {
 		buttonTwo.innerText = '双人点名';
 		let random = randomNum(copylist);
 		let random1 = randomNum(copylist);
+		
 		selectedName.style.backgroundImage = randomColor()
 		selectedName.innerText = copylist[random].name + ', ' + copylist[random1].name;	
 		/***多人删除的时候,我们会出现下标修改的问题,所以最终通过id删除数据 ,存放了两个人的信息*/
