@@ -15,7 +15,7 @@ import {mapMutations,  mapGetters} from 'vuex'
 		name: 'TodoFooter',
 
 		computed: {
-			...mapGetters(['finishLength','todoListLength','todoList','allcheck']),
+			...mapGetters(['finishLength','todoListLength','todoList','allcheck','contentList']),
 			allchecked:{
 				get() {
 					return this.allcheck
@@ -38,6 +38,9 @@ import {mapMutations,  mapGetters} from 'vuex'
 				this.ALLCHECKEDUPDATE(checked)
 			}
 		},
+		mounted() {
+			console.log(this.contentList)
+		}
 	};
 </script>
 <style scoped>
