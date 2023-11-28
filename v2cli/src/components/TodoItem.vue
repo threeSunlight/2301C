@@ -2,7 +2,7 @@
 	<div>
 		<li v-for="item in $store.state.contentList.todoList" :key="item.id">
 			<div>
-				<input type="checkbox" v-model="item.checked" @change="handleChecked"/>
+				<input type="checkbox" v-model="item.checked"/>
 				<span>{{ item.title }}</span>
 			</div>
 			<button @click="deleteItems(item)">删除</button>
@@ -22,10 +22,7 @@
 			deleteItems({ id }) {
 				this.deleteItem(id)
 			},
-			handleChecked() {
-				let result = this.$store.state.contentList.todoList.every(item => item.checked == true)
-				this.CHECKEDLIST(result)
-			}
+			
         }
 	};
 </script>
