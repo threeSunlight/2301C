@@ -21,7 +21,6 @@ const contentlist = {
 				checked: false,
 			},
 		],
-		allChecked: false
 	},
 	mutations: {
 		// 从header获取到新增值
@@ -51,8 +50,7 @@ const contentlist = {
         },
 		// 全选和反选修改数据
 		ALLCHECKEDUPDATE(state, context) {
-			let {todoList,allChecked} = state
-			allChecked = context
+			let {todoList} = state
 			todoList.forEach(element => {
 			 	element.checked = context
 			});	
@@ -61,10 +59,6 @@ const contentlist = {
 		UPDATECLEARFINSHING(state,context) {
 			 state.todoList = state.todoList.filter(item => item.checked == false)
 		},
-		// 反选
-		CHECKEDLIST(state,context) {
-			 state.allChecked = context
-		}
 	},
 	actions: {
         deleteItem(state,context){

@@ -2,32 +2,32 @@
 <template>
 	<div class="footer">
 		<div>
-			<input type="checkbox" v-model="allChecked" @change="handlerAllchecked"/>
-			<span>已完成 {{ todoList.filter((item) => item.checked == true).length }}/全部{{ todoList.length }}</span>
+			<input type="checkbox" v-model="allchecked" @change="handlerAllchecked"/>
+			<span>已完成 {{ finishLength }}/全部{{ todoListLength }}</span>
 		</div>
 		<button @click="clearFinishng">清除已完成任务</button>
 	</div>
 </template>
 <script>
-import {mapState, mapMutations, mapActions} from 'vuex'
+import {mapMutations,  mapGetters} from 'vuex'
 
 	export default {
 		name: 'TodoFooter',
-		data() {
-			return {
-				//allChecked: false,
-			}
-		},
 
 		computed: {
-			...mapState({
-				todoList: state => state.contentList.todoList,
-				allChecked: state => state.contentList.allChecked
-			}),
+			...mapGetters(['finishLength','todoListLength','todoList','allcheck']),
+			allchecked:{
+				get() {
+					return this.allcheck
+				},
+				set(value) {
+				
+				}
+			}
+			
 		},
 		methods: {
 			...mapMutations(['ALLCHECKEDUPDATE','UPDATECLEARFINSHING', 'CHECKEDLIST']),
-			// ...mapActions(['clearFinish']),
 			/***
 			 * 清空已完成任务
 			 */
@@ -37,10 +37,6 @@ import {mapState, mapMutations, mapActions} from 'vuex'
 			handlerAllchecked({target: {checked}}) {
 				this.ALLCHECKEDUPDATE(checked)
 			}
-		},
-		mounted() {
-			console.log(this.todoList)
-			console.log(this.allChecked);
 		},
 	};
 </script>

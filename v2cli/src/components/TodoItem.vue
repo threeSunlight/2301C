@@ -24,9 +24,7 @@
 			},
 			handleChecked() {
 				let result = this.$store.state.contentList.todoList.every(item => item.checked == true)
-				console.log(result);
 				this.CHECKEDLIST(result)
-				// console.log(this.$store.state.contentList.todoList, '$store.state.contentList.todoList');
 			}
         }
 	};
