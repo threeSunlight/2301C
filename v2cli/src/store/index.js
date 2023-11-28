@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import headerValue from './modules/header'
 import footerList from './modules/footer'
 import contentList from './modules/content'
+import getters from './getters'
 Vue.use(Vuex)
 
 
@@ -18,6 +19,6 @@ export default new Vuex.Store({
     // 
     // plugins: [persistedState()],
     //plugins: [persistedState({storage: window.sessionStorage})]
-    // getters
+     getters
     // strict: process.env.NODE_ENV !== 'production'
   })
