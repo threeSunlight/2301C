@@ -1,9 +1,10 @@
+
 <template>
 	<!-- header -->
 	<div>
 		<input
 		class="header_search"
-		v-model.trim="addValue"
+		v-model.trim="$store.state.headerValue.addValue"
 		placeholder="请输入你得任务名称,按回车键确认"
 		@keyup.enter="handlerAdd"
 	/>
@@ -13,28 +14,13 @@
 <script>
 	export default {
 		name: 'TodoHeaderist',
-        data() {
-            return {
-                addValue: '',
-            }
-        },
         methods: {
              /***
 			 * 添加事件
 			 */
 			handlerAdd() {
-				// 去除空""和null
-			/***
-             *他不能为空,并且不能有重复值出现
-             */
-				if (
-					this.addValue &&
-					this.addValue != 'null'
-				) {
-					this.$emit('addList', this.addValue)
-				} else {
-					alert('不能为空,不能重复输入');
-				}
+				const {headerValue: {addValue}} = this.$store.state
+				this.$store.commit('HANDLERADDS',addValue)
 			},
         },
 	};

@@ -14,6 +14,12 @@ dependencies:
   vue-router:
     specifier: ^3.2.0
     version: registry.npmmirror.com/vue-router@3.2.0(vue@2.7.15)
+  vuex:
+    specifier: ^3.6.2
+    version: registry.npmmirror.com/vuex@3.6.2(vue@2.7.15)
+  vuex-persistedstate:
+    specifier: ^4.1.0
+    version: registry.npmmirror.com/vuex-persistedstate@4.1.0(vuex@3.6.2)
 
 devDependencies:
   '@babel/core':
@@ -4136,6 +4142,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  registry.npmmirror.com/deepmerge@4.3.1:
+    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/deepmerge/-/deepmerge-4.3.1.tgz}
+    name: deepmerge
+    version: 4.3.1
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   registry.npmmirror.com/default-gateway@6.0.3:
     resolution: {integrity: sha512-fwSOJsbbNzZ/CUFpqFBqYfYNLj1NbMPm8MMCIzHjC83iSJRBEGmDUxU+WP661BaBQImeC2yHwXtz+P/O9o+XEg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/default-gateway/-/default-gateway-6.0.3.tgz}
     name: default-gateway
@@ -7817,6 +7830,13 @@ packages:
     version: 1.8.1
     dev: true
 
+  registry.npmmirror.com/shvl@2.0.3:
+    resolution: {integrity: sha512-V7C6S9Hlol6SzOJPnQ7qzOVEWUQImt3BNmmzh40wObhla3XOYMe4gGiYzLrJd5TFa+cI2f9LKIRJTTKZSTbWgw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/shvl/-/shvl-2.0.3.tgz}
+    name: shvl
+    version: 2.0.3
+    deprecated: older versions vulnerable to prototype pollution
+    dev: false
+
   registry.npmmirror.com/side-channel@1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/side-channel/-/side-channel-1.0.4.tgz}
     name: side-channel
@@ -8675,6 +8695,31 @@ packages:
     dependencies:
       '@vue/compiler-sfc': registry.npmmirror.com/@vue/compiler-sfc@2.7.15
       csstype: registry.npmmirror.com/csstype@3.1.2
+
+  registry.npmmirror.com/vuex-persistedstate@4.1.0(vuex@3.6.2):
+    resolution: {integrity: sha512-3SkEj4NqwM69ikJdFVw6gObeB0NHyspRYMYkR/EbhR0hbvAKyR5gksVhtAfY1UYuWUOCCA0QNGwv9pOwdj+XUQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vuex-persistedstate/-/vuex-persistedstate-4.1.0.tgz}
+    id: registry.npmmirror.com/vuex-persistedstate/4.1.0
+    name: vuex-persistedstate
+    version: 4.1.0
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+    peerDependencies:
+      vuex: ^3.0 || ^4.0.0-rc
+    dependencies:
+      deepmerge: registry.npmmirror.com/deepmerge@4.3.1
+      shvl: registry.npmmirror.com/shvl@2.0.3
+      vuex: registry.npmmirror.com/vuex@3.6.2(vue@2.7.15)
+    dev: false
+
+  registry.npmmirror.com/vuex@3.6.2(vue@2.7.15):
+    resolution: {integrity: sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vuex/-/vuex-3.6.2.tgz}
+    id: registry.npmmirror.com/vuex/3.6.2
+    name: vuex
+    version: 3.6.2
+    peerDependencies:
+      vue: ^2.0.0
+    dependencies:
+      vue: registry.npmmirror.com/vue@2.7.15
+    dev: false
 
   registry.npmmirror.com/watchpack@2.4.0:
     resolution: {integrity: sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/watchpack/-/watchpack-2.4.0.tgz}

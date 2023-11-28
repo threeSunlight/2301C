@@ -11,7 +11,7 @@
 			<!-- content -->
 		    <Content :addValue="addValue" @getTodoList="getTodoList" :footerTodoList="footerTodoList"/>
 			<!-- footer -->
-			<Footer :todoList="todoList" @getFooterTodoList="getFooterTodoList"/>
+			<Footer :todoList="todoList" @getFooterTodoList="getFooterTodoList" />
 		</div>
 	</div>
 </template>
@@ -40,12 +40,10 @@ import Footer from './TodoFooter.vue'
 			 * 获取子组件的todoList
 			 */
 			 getTodoList(todoList) {
-				console.log(todoList,'todoList');
 				this.todoList = [...todoList]
 			 },
 			 getFooterTodoList(newTodoList) {
 				this.footerTodoList = [...newTodoList]
-				console.log(newTodoList);
 			 },
 			/***
 			 * 接受子组件传递过来的值
@@ -53,20 +51,7 @@ import Footer from './TodoFooter.vue'
 			handlerAddList(addvalue) {
 				this.addValue = addvalue
 			},
-			/***
-			 * 全选方法
-			 */
-			handlerAllChecked() {
-				this.todolist.forEach((item) => {
-					item.checked = this.allChecked;
-				});
-			},
-			// /***
-			//  * 单选方法
-			//  */
-			handlerOneChecked() {
-				this.allChecked = this.todolist.every((item) => item.checked);
-			},
+			
 		},
 	};
 </script>

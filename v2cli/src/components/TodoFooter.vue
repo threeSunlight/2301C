@@ -1,8 +1,8 @@
-import { log } from 'util';
+
 <template>
 	<div class="footer">
 		<div>
-			<input type="checkbox" v-model="allChecked" />
+			<input type="checkbox" v-model="allChecked" @change="handlerAllchecked"/>
 			<span>已完成{{ finishing }}/全部{{ todoList.length }}</span>
 		</div>
 		<button @click="clearFinishng">清除已完成任务</button>
@@ -12,29 +12,28 @@ import { log } from 'util';
 	export default {
 		name: 'TodoFooter',
 		props:['todoList'],
+		data() {
+			return {
+			
+			}
+		},
 		computed: {
 			finishing() {
 				const result = this.todoList.filter(
 					(item) => item.checked == true,
 				).length;
-				console.log(result, 'result');
 				return result;
 			},
-			// allChecked: {
-			// 	get() {
-			// 		const result =
-			// 			this.todolist.filter((item) => item.checked == true).length ==
-			// 			this.todolist.length;
-			// 		// console.log(result, 'result');
-			// 		return result;
-			// 	},
-			// 	set(value) {
-			// 		this.todolist.forEach((item) => {
-			// 			item.checked = value;
-			// 		});
-			// 		// this.todolist.filter((item) => item.checked == true).length == this.todolist.length;
-			// 	},
-			// },
+			allChecked: {
+				get(){
+					return this.todoList.every(item =>  item.checked)
+				},
+				set(value) {
+					this.todoList.forEach(element => {
+						element.checked = value
+					});	
+				}
+			}
 		},
 		methods: {
 			/***
@@ -42,9 +41,11 @@ import { log } from 'util';
 			 */
 			clearFinishng() {
 				let results = this.todoList.filter((item) => item.checked == false)
-				console.log(results,'results')
 				this.$emit('getFooterTodoList', results)
 			},
+			handlerAllchecked() {
+				this.$emit('getFooterCHeckedValue', this.allChecked)
+			}
 		},
 		mounted() {
 			console.log(this.$attrs, 'this.$attrs');

@@ -1,28 +1,25 @@
 <template>
 	<div>
-		<li v-for="item in todolist" :key="item.id">
+		<li v-for="item in $store.state.contentList.todoList" :key="item.id">
 			<div>
 				<input type="checkbox" v-model="item.checked" />
 				<span>{{ item.title }}</span>
 			</div>
-			<button @click="deleteItem(item)">删除</button>
+			<button @click="deleteItems(item)">删除</button>
 		</li>
 	</div>
 </template>
 <script>
+    import {mapActions} from 'vuex'
 	export default {
 		name: 'TodoItem',
-		props: ['todolist'],
-		data() {
-			return {};
-		},
         methods:{
+			...mapActions(['deleteItem']),
             	/***
 			 * 删除子项
 			 */
-			deleteItem({ id }) {
-				const index = this.todolist.findIndex((item) => item.id == id);
-				this.todolist.splice(index, 1);
+			deleteItems({ id }) {
+				this.deleteItem(id)
 			},
         }
 	};
