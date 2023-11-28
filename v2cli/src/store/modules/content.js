@@ -21,6 +21,7 @@ const contentlist = {
 				checked: false,
 			},
 		],
+		allChecked: false
 	},
 	mutations: {
 		// 从header获取到新增值
@@ -47,12 +48,33 @@ const contentlist = {
             const { todoList } = state
             const index = todoList.findIndex((item) => item.id == context);
             todoList.splice(index, 1);
-        }
+        },
+		// 全选和反选修改数据
+		ALLCHECKEDUPDATE(state, context) {
+			let {todoList,allChecked} = state
+			allChecked = context
+			todoList.forEach(element => {
+			 	element.checked = context
+			});	
+		},
+		// 清空已完成修改数据
+		UPDATECLEARFINSHING(state,context) {
+			 state.todoList = state.todoList.filter(item => item.checked == false)
+		},
+		// 反选
+		CHECKEDLIST(state,context) {
+			 state.allChecked = context
+		}
 	},
 	actions: {
         deleteItem(state,context){
             state.commit('DELETETODOLISTITEM', context)
-        }
+        },
+		// 清空已完成任务
+		clearFinish(state,context) {
+			const {commit} = state
+			commit('UPDATECLEARFINSHING')
+		}
     },
 };
 

@@ -7,11 +7,11 @@
      -->
 		<div class="container">
 			<!-- header -->
-			<Header @addList="handlerAddList"/>
+			<Header/>
 			<!-- content -->
-		    <Content :addValue="addValue" @getTodoList="getTodoList" :footerTodoList="footerTodoList"/>
+		    <Content />
 			<!-- footer -->
-			<Footer :todoList="todoList" @getFooterTodoList="getFooterTodoList" />
+			<Footer  />
 		</div>
 	</div>
 </template>

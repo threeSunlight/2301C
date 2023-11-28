@@ -1,7 +1,7 @@
 // 第一步引入
 import Vue from 'vue'
 import Vuex from 'vuex'
-import persistedState from 'vuex-persistedstate'
+// import persistedState from 'vuex-persistedstate'
 import headerValue from './modules/header'
 import footerList from './modules/footer'
 import contentList from './modules/content'
@@ -17,7 +17,7 @@ export default new Vuex.Store({
     // 默认使用localStorage
     // 
     // plugins: [persistedState()],
-    plugins: [persistedState({storage: window.sessionStorage})]
+    //plugins: [persistedState({storage: window.sessionStorage})]
     // getters
     // strict: process.env.NODE_ENV !== 'production'
   })

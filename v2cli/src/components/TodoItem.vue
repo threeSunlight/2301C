@@ -2,7 +2,7 @@
 	<div>
 		<li v-for="item in $store.state.contentList.todoList" :key="item.id">
 			<div>
-				<input type="checkbox" v-model="item.checked" />
+				<input type="checkbox" v-model="item.checked" @change="handleChecked"/>
 				<span>{{ item.title }}</span>
 			</div>
 			<button @click="deleteItems(item)">删除</button>
@@ -10,17 +10,24 @@
 	</div>
 </template>
 <script>
-    import {mapActions} from 'vuex'
+    import {mapActions, mapMutations} from 'vuex'
 	export default {
 		name: 'TodoItem',
         methods:{
 			...mapActions(['deleteItem']),
+			...mapMutations(['CHECKEDLIST']),
             	/***
 			 * 删除子项
 			 */
 			deleteItems({ id }) {
 				this.deleteItem(id)
 			},
+			handleChecked() {
+				let result = this.$store.state.contentList.todoList.every(item => item.checked == true)
+				console.log(result);
+				this.CHECKEDLIST(result)
+				// console.log(this.$store.state.contentList.todoList, '$store.state.contentList.todoList');
+			}
         }
 	};
 </script>
